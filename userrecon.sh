@@ -503,7 +503,7 @@ fi
 ## Instructables
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Instructables: \e[0m"
-check1=$(curl -s -i "https://www.instructables.com/member/$username" -H "Accept-Language: en" -L | grep -o '404 NOT FOUND' ; echo $?)
+check1=$(curl -s -i "https://www.instructables.com/member/$username" -H "Accept-Language: en" -L | grep -o '404 Not Found' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
