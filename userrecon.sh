@@ -320,11 +320,11 @@ fi
 ## FlipBoard
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Flipboard: \e[0m"
-check1=$(curl -s -i "https://flipboard.com/@$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://flipboard.com/@$username" -H "Accept-Language: en" -L | grep -o 'data-vars-button-name="profile-header-follow"' ; echo $?)
 
-if [[ $check1 == *'0'* ]] ; then 
+if [[ $check1 == *'1'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
-elif [[ $check1 == *'1'* ]]; then 
+elif [[ $check1 == *'0'* ]]; then 
 
 printf "\e[1;92m Found!\e[0m https://flipboard.com/@%s\n" $username
 printf "https://flipboard.com/@%s\n" $username >> $username.txt
