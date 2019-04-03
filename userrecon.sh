@@ -98,7 +98,7 @@ fi
 ## BLOGGER
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Blogger: \e[0m"
-check=$(curl -s "https://$username.blogspot.com" -L -H "Accept-Language: en" -i | grep -o 'HTTP/2 404'; echo $?)
+check=$(curl -s "https://$username.blogspot.com" -L -H "Accept-Language: en" -i | grep -o 'Blog not found'; echo $?)
 
 
 if [[ $check == *'1'* ]]; then
@@ -124,7 +124,8 @@ fi
 ## REDDIT
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Reddit: \e[0m"
-check1=$(curl -s -i "https://www.reddit.com/user/$username" -H "Accept-Language: en" -L --user-agent '"Mozilla/5.0 (X11; U; Linux i686; en-US; rv:0.9.3) Gecko/20010801"' | head -n1 | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://www.reddit.com/user/$username" -H "Accept-Language: en" -L --user-agent '"Mozilla/5.0 (X11; U; Linux i686; en-US; rv:0.9.3) Gecko/20010801"' | head -n1 | grep -o 'page not found' ; echo $?)
+
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -137,7 +138,7 @@ fi
 ## WORDPRESS
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Wordpress: \e[0m"
-check1=$(curl -s -i "https://$username.wordpress.com" -H "Accept-Language: en" -L --user-agent '"Mozilla/5.0 (X11; U; Linux i686; en-US; rv:0.9.3) Gecko/20010801"' | grep -o 'Do you want to register' ; echo $?)
+check1=$(curl -s -i "https://$username.wordpress.com" -H "Accept-Language: en" -L --user-agent '"Mozilla/5.0 (X11; U; Linux i686; en-US; rv:0.9.3) Gecko/20010801"' | grep -o 'exist' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -150,7 +151,9 @@ fi
 ## PINTEREST
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Pinterest: \e[0m"
-check1=$(curl -s -i "https://www.pinterest.com/$username" -H "Accept-Language: en" -L --user-agent '"Mozilla/5.0 (X11; U; Linux i686; en-US; rv:0.9.3) Gecko/20010801"' | grep -o '?show_error' ; echo $?)
+check1=$(curl -s -i "https://www.pinterest.com/$username" -H "Accept-Language: en" -L --user-agent '"Mozilla/5.0 (X11; U; Linux i686; en-US; rv:0.9.3) Gecko/20010801"' | grep -o 'Something went wrong' ; echo $?)
+
+curl "https://www.pinterest.com/$username" > pinterest.txt
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -176,7 +179,7 @@ fi
 ## TUMBLR
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Tumblr: \e[0m"
-check1=$(curl -s -i "https://$username.tumblr.com" -H "Accept-Language: en" -L --user-agent '"Mozilla/5.0 (X11; U; Linux i686; en-US; rv:0.9.3) Gecko/20010801"' | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://$username.tumblr.com" -H "Accept-Language: en" -L --user-agent '"Mozilla/5.0 (X11; U; Linux i686; en-US; rv:0.9.3) Gecko/20010801"' | grep -o 'nothing here.' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -255,7 +258,7 @@ fi
 ## MEDIUM
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Medium: \e[0m"
-check1=$(curl -s -i "https://medium.com/@$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://medium.com/@$username" -H "Accept-Language: en" -L | grep -o 'find this page.' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -268,7 +271,7 @@ fi
 ## DEVIANTART
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] DeviantART: \e[0m"
-check1=$(curl -s -i "https://$username.deviantart.com" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://$username.deviantart.com" -H "Accept-Language: en" -L | grep -o 'The page you were looking for' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -281,7 +284,7 @@ fi
 ## VK
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] VK: \e[0m"
-check1=$(curl -s -i "https://vk.com/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://vk.com/$username" -H "Accept-Language: en" -L | grep -o '404 Not Found' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -294,7 +297,7 @@ fi
 ## About.me
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] About.me: \e[0m"
-check1=$(curl -s -i "https://about.me/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://about.me/$username" -H "Accept-Language: en" -L | grep -o 'Freelancers and entrepreneurs use about.me' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -308,7 +311,7 @@ fi
 ## Imgur
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Imgur: \e[0m"
-check1=$(curl -s -i "https://imgur.com/user/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://imgur.com/user/$username" -H "Accept-Language: en" -L | grep -o 'taken a wrong turn.' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -321,7 +324,7 @@ fi
 ## FlipBoard
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Flipboard: \e[0m"
-check1=$(curl -s -i "https://flipboard.com/@$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://flipboard.com/@$username" -H "Accept-Language: en" -L | grep -o 'loading...' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -334,7 +337,7 @@ fi
 ## SlideShare
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] SlideShare: \e[0m"
-check1=$(curl -s -i "https://slideshare.net/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://slideshare.net/$username" -H "Accept-Language: en" -L | grep -o 'is still available' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -361,7 +364,7 @@ fi
 ## Spotify
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Spotify: \e[0m"
-check1=$(curl -s -i "https://open.spotify.com/user/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://open.spotify.com/user/$username" -H "Accept-Language: en" -L | grep -o "Sorry, couldn"; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -413,7 +416,7 @@ fi
 # Patreon
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Patreon: \e[0m"
-check1=$(curl -s -i "https://www.patreon.com/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://www.patreon.com/$username" -H "Accept-Language: en" -L | grep -o 'Oh no! Looks like you got lost.' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -426,7 +429,7 @@ fi
 ## BitBucket
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] BitBucket: \e[0m"
-check1=$(curl -s -i "https://bitbucket.org/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://bitbucket.org/$username" -H "Accept-Language: en" -L | grep -o ' That link has no power here' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -452,7 +455,7 @@ fi
 ## Etsy
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Etsy: \e[0m"
-check1=$(curl -s -i "https://www.etsy.com/shop/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://www.etsy.com/shop/$username" -H "Accept-Language: en" -L | grep -o ' Sorry, the page you were looking for was not found.' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -504,7 +507,7 @@ fi
 ## Instructables
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Instructables: \e[0m"
-check1=$(curl -s -i "https://www.instructables.com/member/$username" -H "Accept-Language: en" -L | grep -o '404 NOT FOUND' ; echo $?)
+check1=$(curl -s -i "https://www.instructables.com/member/$username" -H "Accept-Language: en" -L | grep -o "404: We're sorry, things break sometimes" ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -556,7 +559,7 @@ fi
 ## AngelList
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] AngelList: \e[0m"
-check1=$(curl -s -i "https://angel.co/$username" -H "Accept-Language: en" -L | grep -o '404 Not Found' ; echo $?)
+check1=$(curl -s -i "https://angel.co/$username" -H "Accept-Language: en" -L | grep -o '404' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -569,7 +572,7 @@ fi
 ## Last.fm
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] last.fm: \e[0m"
-check1=$(curl -s -i "https://last.fm/user/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://last.fm/user/$username" -H "Accept-Language: en" -L | grep -o '404 - Page Not Found' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -582,7 +585,7 @@ fi
 ## Dribbble
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Dribbble: \e[0m"
-check1=$(curl -s -i "https://dribbble.com/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://dribbble.com/$username" -H "Accept-Language: en" -L | grep -o 'Whoops, that page is gone.' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -595,7 +598,7 @@ fi
 ## Codecademy
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Codecademy: \e[0m"
-check1=$(curl -s -i "https://www.codecademy.com/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://www.codecademy.com/$username" -H "Accept-Language: en" -L | grep -o '404 error' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -608,7 +611,7 @@ fi
 ## Gravatar
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Gravatar: \e[0m"
-check1=$(curl -s -i "https://en.gravatar.com/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://en.gravatar.com/$username" -H "Accept-Language: en" -L | grep -o "sorry, we couldn't find that profile." ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -673,7 +676,7 @@ fi
 ## Newgrounds
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Newgrounds: \e[0m"
-check1=$(curl -s -i "https://$username.newgrounds.com" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404 ' ; echo $?)
+check1=$(curl -s -i "https://$username.newgrounds.com" -H "Accept-Language: en" -L | grep -o 'is an invalid username.' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -686,7 +689,7 @@ fi
 ## Wattpad
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Wattpad: \e[0m"
-check1=$(curl -s -i "https://www.wattpad.com/user/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404 ' ; echo $?)
+check1=$(curl -s -i "https://www.wattpad.com/user/$username" -H "Accept-Language: en" -L | grep -o 'This page seems to be missing...' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -699,7 +702,7 @@ fi
 ## Canva
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Canva: \e[0m"
-check1=$(curl -s -i "https://www.canva.com/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404 ' ; echo $?)
+check1=$(curl -s -i "https://www.canva.com/$username" -H "Accept-Language: en" -L | grep -o 'Not found (404)' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -712,7 +715,7 @@ fi
 ## CreativeMarket
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] CreativeMarket: \e[0m"
-check1=$(curl -s -i "https://creativemarket.com/$username" -H "Accept-Language: en" -L | grep -o '404eef72' ; echo $?)
+check1=$(curl -s -i "https://creativemarket.com/$username" -H "Accept-Language: en" -L | grep -o 'Ready-to-use design assets' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -725,7 +728,7 @@ fi
 ## Trakt
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Trakt: \e[0m"
-check1=$(curl -s -i "https://www.trakt.tv/users/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404 ' ; echo $?)
+check1=$(curl -s -i "https://www.trakt.tv/users/$username" -H "Accept-Language: en" -L | grep -o '404' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -751,7 +754,7 @@ fi
 ## Buzzfeed
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Buzzfeed: \e[0m"
-check1=$(curl -s -i "https://buzzfeed.com/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://buzzfeed.com/$username" -H "Accept-Language: en" -L | grep -o "We can't find the page you're looking for." ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -764,7 +767,7 @@ fi
 ## TripAdvisor
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] TripAdvisor: \e[0m"
-check1=$(curl -s -i "https://tripadvisor.com/members/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://tripadvisor.com/members/$username" -H "Accept-Language: en" -L | grep -o ' This page is on vacation…' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -777,7 +780,7 @@ fi
 ## HubPages
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] HubPages: \e[0m"
-check1=$(curl -s -i "https://$username.hubpages.com" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://$username.hubpages.com" -H "Accept-Language: en" -L | grep -o 'Page does not exist' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -803,7 +806,7 @@ fi
 ## Houzz
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Houzz: \e[0m"
-check1=$(curl -s -i "https://houzz.com/user/$username" -H "Accept-Language: en" -L | grep -o 'an error has occurred' ; echo $?)
+check1=$(curl -s -i "https://houzz.com/user/$username" -H "Accept-Language: en" -L | grep -o 'The page you requested was not found.' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -829,7 +832,7 @@ fi
 ## Wikipedia
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Wikipedia: \e[0m"
-check1=$(curl -s -i "https://www.wikipedia.org/wiki/User:$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404' ; echo $?)
+check1=$(curl -s -i "https://www.wikipedia.org/wiki/User:$username" -H "Accept-Language: en" -L | grep -o 'is not registered.' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -948,7 +951,7 @@ fi
 ## Slack
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Slack: \e[0m"
-check1=$(curl -s -i "https://$username.slack.com" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404\|404 Not Found' ; echo $?)
+check1=$(curl -s -i "https://$username.slack.com" -H "Accept-Language: en" -L | grep -o 'Bad Request' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
@@ -974,7 +977,7 @@ fi
 ## Trip
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Trip: \e[0m"
-check1=$(curl -s -i "https://www.trip.skyscanner.com/user/$username" -H "Accept-Language: en" -L | grep -o 'HTTP/2 404\|404 Not Found\|HTTP/2 410' ; echo $?)
+check1=$(curl -s -i "https://www.trip.skyscanner.com/user/$username" -H "Accept-Language: en" -L | grep -o 'Page not found' ; echo $?)
 
 if [[ $check1 == *'0'* ]] ; then 
 printf "\e[1;93mNot Found!\e[0m\n"
