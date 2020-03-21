@@ -27,7 +27,7 @@ printf "                                                    \e[1;92m'.__.' \e[0m
 partial() {
 
 if [[ -e $username.txt ]]; then
-printf "\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Saved:\e[0m\e[1;77m %s.txt\n" $username
+printf "\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Saved:\e[0m\e[1;77m %s.txt\n" "$username"
 fi
 
 
@@ -38,11 +38,11 @@ scanner() {
 read -p $'\e[1;92m[\e[0m\e[1;77m?\e[0m\e[1;92m] Input Username:\e[0m ' username
 
 if [[ -e $username.txt ]]; then
-printf "\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Removing previous file:\e[0m\e[1;77m %s.txt" $username
-rm -rf $username.txt
+printf "\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Removing previous file:\e[0m\e[1;77m %s.txt" "$username"
+rm -rf "$username".txt
 fi
 printf "\n"
-printf "\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Checking username\e[0m\e[1;77m %s\e[0m\e[1;92m on: \e[0m\n" $username
+printf "\e[1;92m[\e[0m\e[1;77m*\e[0m\e[1;92m] Checking username\e[0m\e[1;77m %s\e[0m\e[1;92m on: \e[0m\n" "$username"
 
 ## INSTAGRAM
 
@@ -50,8 +50,8 @@ check_insta=$(curl -s -H "Accept-Language: en" "https://www.instagram.com/$usern
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Instagram: \e[0m"
 
 if [[ $check_insta == *'1'* ]]; then
-printf "\e[1;92m Found!\e[0m https://www.instagram.com/%s\n" $username
-printf "https://www.instagram.com/%s\n" $username > $username.txt
+printf "\e[1;92m Found!\e[0m https://www.instagram.com/%s\n" "$username"
+printf "https://www.instagram.com/%s\n" "$username" > "$username".txt
 elif [[ $check_insta == *'0'* ]]; then
 printf "\e[1;93mNot Found!\e[0m\n"
 fi
@@ -63,8 +63,8 @@ check_face=$(curl -s "https://www.facebook.com/$username" -L -H "Accept-Language
 
 
 if [[ $check_face == *'1'* ]]; then
-printf "\e[1;92m Found!\e[0m https://www.facebook.com/%s\n" $username
-printf "https://www.facebook.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.facebook.com/%s\n" "$username"
+printf "https://www.facebook.com/%s\n" "$username" >> "$username".txt
 elif [[ $check_face == *'0'* ]]; then
 printf "\e[1;93mNot Found!\e[0m\n"
 fi
@@ -76,8 +76,8 @@ check_twitter=$(curl -s "https://www.twitter.com/$username" -L -H "Accept-Langua
 
 
 if [[ $check_twitter == *'1'* ]]; then
-printf "\e[1;92m Found!\e[0m https://www.twitter.com/%s\n" $username
-printf "https://www.twitter.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.twitter.com/%s\n" "$username"
+printf "https://www.twitter.com/%s\n" "$username" >> "$username".txt
 elif [[ $check_twitter == *'0'* ]]; then
 printf "\e[1;93mNot Found!\e[0m\n"
 fi
@@ -89,8 +89,8 @@ check_youtube=$(curl -s "https://www.youtube.com/$username" -L -H "Accept-Langua
 
 
 if [[ $check_youtube == *'1'* ]]; then
-printf "\e[1;92m Found!\e[0m https://www.youtube.com/%s\n" $username
-printf "https://www.youtube.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.youtube.com/%s\n" "$username"
+printf "https://www.youtube.com/%s\n" "$username" >> "$username".txt
 elif [[ $check_youtube == *'0'* ]]; then
 printf "\e[1;93mNot Found!\e[0m\n"
 fi
@@ -102,8 +102,8 @@ check=$(curl -s "https://$username.blogspot.com" -L -H "Accept-Language: en" -i 
 
 
 if [[ $check == *'1'* ]]; then
-printf "\e[1;92m Found!\e[0m https://%s.blogspot.com\n" $username
-printf "https://%s.blogspot.com\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://%s.blogspot.com\n" "$username"
+printf "https://%s.blogspot.com\n" "$username" >> "$username".txt
 elif [[ $check == *'0'* ]]; then
 printf "\e[1;93mNot Found!\e[0m\n"
 fi
@@ -115,8 +115,8 @@ check=$(curl -s "https://plus.google.com/+$username/posts" -L -H "Accept-Languag
 
 
 if [[ $check == *'1'* ]]; then
-printf "\e[1;92m Found!\e[0m https://plus.google.com/+%s/posts\n" $username
-printf "https://plus.google.com/+%s/posts\n" $username >> $username
+printf "\e[1;92m Found!\e[0m https://plus.google.com/+%s/posts\n" "$username"
+printf "https://plus.google.com/+%s/posts\n" "$username" >> "$username"
 elif [[ $check == *'0'* ]]; then
 printf "\e[1;93mNot Found!\e[0m\n"
 fi
@@ -131,8 +131,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.reddit.com/user/%s\n" $username
-printf "https://www.reddit.com/user/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.reddit.com/user/%s\n" "$username"
+printf "https://www.reddit.com/user/%s\n" "$username" >> "$username".txt
 fi
 
 ## WORDPRESS
@@ -144,8 +144,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://%s.wordpress.com\n" $username
-printf "https://%s.wordpress.com\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://%s.wordpress.com\n" "$username"
+printf "https://%s.wordpress.com\n" "$username" >> "$username".txt
 fi
 
 ## PINTEREST
@@ -159,8 +159,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.pinterest.com/%s\n" $username
-printf "https://www.pinterest.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.pinterest.com/%s\n" "$username"
+printf "https://www.pinterest.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## GITHUB
@@ -172,8 +172,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.github.com/%s\n" $username
-printf "https://www.github.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.github.com/%s\n" "$username"
+printf "https://www.github.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## TUMBLR
@@ -185,8 +185,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://%s.tumblr.com\n" $username
-printf "https://%s.tumblr.com\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://%s.tumblr.com\n" "$username"
+printf "https://%s.tumblr.com\n" "$username" >> "$username".txt
 fi
 
 ## FLICKR
@@ -198,8 +198,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.flickr.com/photos/%s\n" $username
-printf "https://www.flickr.com/photos/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.flickr.com/photos/%s\n" "$username"
+printf "https://www.flickr.com/photos/%s\n" "$username" >> "$username".txt
 fi
 
 ## STEAM
@@ -211,8 +211,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://steamcommunity.com/id/%s\n" $username
-printf "https://steamcommunity.com/id/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://steamcommunity.com/id/%s\n" "$username"
+printf "https://steamcommunity.com/id/%s\n" "$username" >> "$username".txt
 fi
 
 ## VIMEO
@@ -224,8 +224,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://vimeo.com/%s\n" $username
-printf "https://vimeo.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://vimeo.com/%s\n" "$username"
+printf "https://vimeo.com/%s\n" "$username" >> "$username".txt
 fi
 
 
@@ -238,8 +238,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://soundcloud.com/%s\n" $username
-printf "https://soundcloud.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://soundcloud.com/%s\n" "$username"
+printf "https://soundcloud.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## DISQUS
@@ -251,8 +251,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://disqus.com/%s\n" $username
-printf "https://disqus.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://disqus.com/%s\n" "$username"
+printf "https://disqus.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## MEDIUM
@@ -264,8 +264,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://medium.com/@%s\n" $username
-printf "https://medium.com/@%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://medium.com/@%s\n" "$username"
+printf "https://medium.com/@%s\n" "$username" >> "$username".txt
 fi
 
 ## DEVIANTART
@@ -277,8 +277,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://%s.deviantart.com\n" $username
-printf "https://%s.deviantart.com\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://%s.deviantart.com\n" "$username"
+printf "https://%s.deviantart.com\n" "$username" >> "$username".txt
 fi
 
 ## VK
@@ -290,8 +290,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://vk.com/%s\n" $username
-printf "https://vk.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://vk.com/%s\n" "$username"
+printf "https://vk.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## About.me
@@ -303,8 +303,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://about.me/%s\n" $username
-printf "https://about.me/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://about.me/%s\n" "$username"
+printf "https://about.me/%s\n" "$username" >> "$username".txt
 fi
 
 
@@ -317,8 +317,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://imgur.com/user/%s\n" $username
-printf "https://imgur.com/user/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://imgur.com/user/%s\n" "$username"
+printf "https://imgur.com/user/%s\n" "$username" >> "$username".txt
 fi
 
 ## FlipBoard
@@ -330,8 +330,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://flipboard.com/@%s\n" $username
-printf "https://flipboard.com/@%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://flipboard.com/@%s\n" "$username"
+printf "https://flipboard.com/@%s\n" "$username" >> "$username".txt
 fi
 
 ## SlideShare
@@ -343,8 +343,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://slideshare.net/%s\n" $username
-printf "https://slideshare.net/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://slideshare.net/%s\n" "$username"
+printf "https://slideshare.net/%s\n" "$username" >> "$username".txt
 fi
 
 ## Fotolog
@@ -356,8 +356,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://fotolog.com/%s\n" $username
-printf "https://fotolog.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://fotolog.com/%s\n" "$username"
+printf "https://fotolog.com/%s\n" "$username" >> "$username".txt
 fi
 
 
@@ -370,8 +370,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://open.spotify.com/user/%s\n" $username
-printf "https://open.spotify.com/user/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://open.spotify.com/user/%s\n" "$username"
+printf "https://open.spotify.com/user/%s\n" "$username" >> "$username".txt
 fi
 
 ## MixCloud
@@ -383,8 +383,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.mixcloud.com/%s\n" $username
-printf "https://www.mixcloud.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.mixcloud.com/%s\n" "$username"
+printf "https://www.mixcloud.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Scribd
@@ -396,8 +396,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.scribd.com/%s\n" $username
-printf "https://www.scribd.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.scribd.com/%s\n" "$username"
+printf "https://www.scribd.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Badoo
@@ -409,8 +409,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.badoo.com/en/%s\n" $username
-printf "https://www.badoo.com/en/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.badoo.com/en/%s\n" "$username"
+printf "https://www.badoo.com/en/%s\n" "$username" >> "$username".txt
 fi
 
 # Patreon
@@ -422,8 +422,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.patreon.com/%s\n" $username
-printf "https://www.patreon.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.patreon.com/%s\n" "$username"
+printf "https://www.patreon.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## BitBucket
@@ -435,8 +435,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://bitbucket.org/%s\n" $username
-printf "https://bitbucket.org/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://bitbucket.org/%s\n" "$username"
+printf "https://bitbucket.org/%s\n" "$username" >> "$username".txt
 fi
 
 ## DailyMotion
@@ -448,8 +448,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.dailymotion.com/%s\n" $username
-printf "https://www.dailymotion.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.dailymotion.com/%s\n" "$username"
+printf "https://www.dailymotion.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Etsy
@@ -461,8 +461,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.etsy.com/shop/%s\n" $username
-printf "https://www.etsy.com/shop/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.etsy.com/shop/%s\n" "$username"
+printf "https://www.etsy.com/shop/%s\n" "$username" >> "$username".txt
 fi
 
 ## CashMe
@@ -474,8 +474,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://cash.me/%s\n" $username
-printf "https://cash.me/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://cash.me/%s\n" "$username"
+printf "https://cash.me/%s\n" "$username" >> "$username".txt
 fi
 
 ## Behance
@@ -487,8 +487,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.behance.net/%s\n" $username
-printf "https://www.behance.net/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.behance.net/%s\n" "$username"
+printf "https://www.behance.net/%s\n" "$username" >> "$username".txt
 fi
 
 ## GoodReads
@@ -500,8 +500,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.goodreads.com/%s\n" $username
-printf "https://www.goodreads.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.goodreads.com/%s\n" "$username"
+printf "https://www.goodreads.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Instructables
@@ -513,8 +513,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.instructables.com/member/%s\n" $username
-printf "https://www.instructables.com/member/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.instructables.com/member/%s\n" "$username"
+printf "https://www.instructables.com/member/%s\n" "$username" >> "$username".txt
 fi
 
 ## KeyBase
@@ -526,8 +526,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://keybase.io/%s\n" $username
-printf "https://keybase.io/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://keybase.io/%s\n" "$username"
+printf "https://keybase.io/%s\n" "$username" >> "$username".txt
 fi
 
 ## Kongregate
@@ -539,8 +539,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://kongregate.com/accounts/%s\n" $username
-printf "https://kongregate.com/accounts/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://kongregate.com/accounts/%s\n" "$username"
+printf "https://kongregate.com/accounts/%s\n" "$username" >> "$username".txt
 fi
 
 ## Livejournal
@@ -552,8 +552,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://%s.livejournal.com\n" $username
-printf "https://%s.livejournal.com\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://%s.livejournal.com\n" "$username"
+printf "https://%s.livejournal.com\n" "$username" >> "$username".txt
 fi
 
 ## AngelList
@@ -565,8 +565,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://angel.co/%s\n" $username
-printf "https://angel.co/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://angel.co/%s\n" "$username"
+printf "https://angel.co/%s\n" "$username" >> "$username".txt
 fi
 
 ## Last.fm
@@ -578,8 +578,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://last.fm/user/%s\n" $username
-printf "https://last.fm/user/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://last.fm/user/%s\n" "$username"
+printf "https://last.fm/user/%s\n" "$username" >> "$username".txt
 fi
 
 ## Dribbble
@@ -591,8 +591,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://dribbble.com/%s\n" $username
-printf "https://dribbble.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://dribbble.com/%s\n" "$username"
+printf "https://dribbble.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Codecademy
@@ -604,8 +604,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.codecademy.com/%s\n" $username
-printf "https://www.codecademy.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.codecademy.com/%s\n" "$username"
+printf "https://www.codecademy.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Gravatar
@@ -617,8 +617,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://en.gravatar.com/%s\n" $username
-printf "https://en.gravatar.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://en.gravatar.com/%s\n" "$username"
+printf "https://en.gravatar.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Pastebin
@@ -630,8 +630,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://pastebin.com/u/%s\n" $username
-printf "https://pastebin.com/u/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://pastebin.com/u/%s\n" "$username"
+printf "https://pastebin.com/u/%s\n" "$username" >> "$username".txt
 fi
 
 ## Foursquare
@@ -643,8 +643,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://foursquare.com/%s\n" $username
-printf "https://foursquare.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://foursquare.com/%s\n" "$username"
+printf "https://foursquare.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Roblox
@@ -656,8 +656,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://foursquare.com/%s\n" $username
-printf "https://foursquare.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://foursquare.com/%s\n" "$username"
+printf "https://foursquare.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Gumroad
@@ -669,8 +669,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.gumroad.com/%s\n" $username
-printf "https://www.gumroad.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.gumroad.com/%s\n" "$username"
+printf "https://www.gumroad.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Newgrounds
@@ -682,8 +682,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://%s.newgrounds.com\n" $username
-printf "https://%s.newgrounds.com\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://%s.newgrounds.com\n" "$username"
+printf "https://%s.newgrounds.com\n" "$username" >> "$username".txt
 fi
 
 ## Wattpad
@@ -695,8 +695,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.wattpad.com/user/%s\n" $username
-printf "https://www.wattpad.com/user/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.wattpad.com/user/%s\n" "$username"
+printf "https://www.wattpad.com/user/%s\n" "$username" >> "$username".txt
 fi
 
 ## Canva
@@ -708,8 +708,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.canva.com/%s\n" $username
-printf "https://www.canva.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.canva.com/%s\n" "$username"
+printf "https://www.canva.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## CreativeMarket
@@ -721,8 +721,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://creativemarket.com/%s\n" $username
-printf "https://creativemarket.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://creativemarket.com/%s\n" "$username"
+printf "https://creativemarket.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Trakt
@@ -734,8 +734,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.trakt.tv/users/%s\n" $username
-printf "https://www.trakt.tv/users/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.trakt.tv/users/%s\n" "$username"
+printf "https://www.trakt.tv/users/%s\n" "$username" >> "$username".txt
 fi
 
 ## 500px
@@ -747,8 +747,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://500px.com/%s\n" $username
-printf "https://500px.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://500px.com/%s\n" "$username"
+printf "https://500px.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Buzzfeed
@@ -760,8 +760,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://buzzfeed.com/%s\n" $username
-printf "https://buzzfeed.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://buzzfeed.com/%s\n" "$username"
+printf "https://buzzfeed.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## TripAdvisor
@@ -773,8 +773,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://tripadvisor.com/members/%s\n" $username
-printf "https://tripadvisor.com/members/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://tripadvisor.com/members/%s\n" "$username"
+printf "https://tripadvisor.com/members/%s\n" "$username" >> "$username".txt
 fi
 
 ## HubPages
@@ -786,8 +786,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://%s.hubpages.com/\n" $username
-printf "https://%s.hubpages.com/\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://%s.hubpages.com/\n" "$username"
+printf "https://%s.hubpages.com/\n" "$username" >> "$username".txt
 fi
 
 ## Contently
@@ -799,8 +799,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://%s.contently.com\n" $username
-printf "https://%s.contently.com\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://%s.contently.com\n" "$username"
+printf "https://%s.contently.com\n" "$username" >> "$username".txt
 fi
 
 ## Houzz
@@ -812,8 +812,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://houzz.com/user/%s\n" $username
-printf "https://houzz.com/user/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://houzz.com/user/%s\n" "$username"
+printf "https://houzz.com/user/%s\n" "$username" >> "$username".txt
 fi
 
 ## blip.fm
@@ -825,8 +825,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://blip.fm/%s\n" $username
-printf "https://blip.fm/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://blip.fm/%s\n" "$username"
+printf "https://blip.fm/%s\n" "$username" >> "$username".txt
 fi
 
 ## Wikipedia
@@ -838,8 +838,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.wikipedia.org/wiki/User:%s\n" $username
-printf "https://www.wikipedia.org/wiki/User:%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.wikipedia.org/wiki/User:%s\n" "$username"
+printf "https://www.wikipedia.org/wiki/User:%s\n" "$username" >> "$username".txt
 fi
 
 ## HackerNews
@@ -851,8 +851,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://news.ycombinator.com/user?id=%s\n" $username
-printf "https://news.ycombinator.com/user?id=%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://news.ycombinator.com/user?id=%s\n" "$username"
+printf "https://news.ycombinator.com/user?id=%s\n" "$username" >> "$username".txt
 fi
 
 ## CodeMentor
@@ -864,8 +864,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.codementor.io/%s\n" $username
-printf "https://www.codementor.io/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.codementor.io/%s\n" "$username"
+printf "https://www.codementor.io/%s\n" "$username" >> "$username".txt
 fi
 
 ## ReverbNation
@@ -877,8 +877,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.reverbnation.com/%s\n" $username
-printf "https://www.reverbnation.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.reverbnation.com/%s\n" "$username"
+printf "https://www.reverbnation.com/%s\n" "$username" >> "$username".txt
 fi
 
 ## Designspiration 65
@@ -890,8 +890,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.designspiration.net/%s\n" $username
-printf "https://www.designspiration.net/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.designspiration.net/%s\n" "$username"
+printf "https://www.designspiration.net/%s\n" "$username" >> "$username".txt
 fi
 
 ## Bandcamp
@@ -903,8 +903,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.bandcamp.com/%s\n" $username
-printf "https://www.bandcamp.com/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.bandcamp.com/%s\n" "$username"
+printf "https://www.bandcamp.com/%s\n" "$username" >> "$username".txt
 fi
 
 
@@ -917,8 +917,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.colourlovers.com/love/%s\n" $username
-printf "https://www.colourlovers.com/love/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.colourlovers.com/love/%s\n" "$username"
+printf "https://www.colourlovers.com/love/%s\n" "$username" >> "$username".txt
 fi
 
 
@@ -931,8 +931,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.ifttt.com/p/%s\n" $username
-printf "https://www.ifttt.com/p/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.ifttt.com/p/%s\n" "$username"
+printf "https://www.ifttt.com/p/%s\n" "$username" >> "$username".txt
 fi
 
 ## Ebay
@@ -944,8 +944,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.ebay.com/usr/%s\n" $username
-printf "https://www.ebay.com/usr/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.ebay.com/usr/%s\n" "$username"
+printf "https://www.ebay.com/usr/%s\n" "$username" >> "$username".txt
 fi
 
 ## Slack
@@ -957,8 +957,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://%s.slack.com\n" $username
-printf "https://%s.slack.com\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://%s.slack.com\n" "$username"
+printf "https://%s.slack.com\n" "$username" >> "$username".txt
 fi
 
 ## OkCupid
@@ -970,8 +970,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.okcupid.com/profile/%s\n" $username
-printf "https://www.okcupid.com/profile/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.okcupid.com/profile/%s\n" "$username"
+printf "https://www.okcupid.com/profile/%s\n" "$username" >> "$username".txt
 fi
 
 ## Trip
@@ -983,8 +983,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.trip.skyscanner.com/user/%s\n" $username
-printf "https://www.trip.skyscanner.com/user/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.trip.skyscanner.com/user/%s\n" "$username"
+printf "https://www.trip.skyscanner.com/user/%s\n" "$username" >> "$username".txt
 fi
 
 ## Ello
@@ -996,8 +996,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://ello.co/%s\n" $username
-printf "https://ello.co/%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://ello.co/%s\n" "$username"
+printf "https://ello.co/%s\n" "$username" >> "$username".txt
 fi
 
 ## Tracky
@@ -1009,8 +1009,8 @@ if [[ $check1 == *'1'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'0'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://tracky.com/~%s\n" $username
-printf "https://tracky.com/~%s\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://tracky.com/~%s\n" "$username"
+printf "https://tracky.com/~%s\n" "$username" >> "$username".txt
 fi
 
 ## Tripit
@@ -1022,8 +1022,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://www.tripit.com/people/%s#/profile/basic-info\n" $username
-printf "https://www.tripit.com/people/%s#/profile/basic-info\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://www.tripit.com/people/%s#/profile/basic-info\n" "$username"
+printf "https://www.tripit.com/people/%s#/profile/basic-info\n" "$username" >> "$username".txt
 fi
 
 ## Basecamp
@@ -1035,8 +1035,8 @@ if [[ $check1 == *'0'* ]] ; then
 printf "\e[1;93mNot Found!\e[0m\n"
 elif [[ $check1 == *'1'* ]]; then 
 
-printf "\e[1;92m Found!\e[0m https://%s.basecamphq.com/login\n" $username
-printf "https://%s.basecamphq.com/login\n" $username >> $username.txt
+printf "\e[1;92m Found!\e[0m https://%s.basecamphq.com/login\n" "$username"
+printf "https://%s.basecamphq.com/login\n" "$username" >> "$username".txt
 
 fi
 partial
