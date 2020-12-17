@@ -7,4 +7,3 @@ enabled = true
 [[transformers]]
 name = "black"
 enabled = true
-
